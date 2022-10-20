@@ -8,9 +8,9 @@ const AddTask = ({ getTask }) => {
   const [date, setDate] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     const newTask = { task, date };
     // console.log("task geldi mi:", newTask);
+    e.preventDefault();
     addNewTask(newTask);
     setTask("");
     setDate("");
@@ -31,6 +31,7 @@ const AddTask = ({ getTask }) => {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Task</Form.Label>
           <Form.Control
+            value={task}
             type="text"
             placeholder="Enter task"
             onChange={(e) => setTask(e.target.value)}
@@ -39,7 +40,11 @@ const AddTask = ({ getTask }) => {
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Date</Form.Label>
-          <Form.Control type="date" onChange={(e) => setDate(e.target.value)} />
+          <Form.Control
+            value={date}
+            type="date"
+            onChange={(e) => setDate(e.target.value)}
+          />
         </Form.Group>
         <div className="text-center">
           <Button variant="primary w-50 " type="submit">
