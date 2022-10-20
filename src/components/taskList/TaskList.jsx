@@ -1,6 +1,16 @@
+import axios from "axios";
 import React from "react";
 import { TiDeleteOutline } from "react-icons/ti";
-const TaskList = ({ task }) => {
+const TaskList = ({ task, getTask }) => {
+  const deleteTask = async (id) => {
+    const url = "https://635182073e9fa1244e6083a6.mockapi.io/api/tasks";
+    try {
+      await axios.delete(`${url}/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  getTask();
   return (
     <div>
       {task.map((item) => {
@@ -16,6 +26,9 @@ const TaskList = ({ task }) => {
             </div>
             <div>
               <TiDeleteOutline
+                onClick={() => {
+                  deleteTask(id);
+                }}
                 style={{
                   cursor: "pointer",
                   marginRight: "20px",
